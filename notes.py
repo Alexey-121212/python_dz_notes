@@ -34,10 +34,14 @@ def load_notes(file):
      except FileNotFoundError:
         open(file, 'w', encoding='utf-8')
         return -1
-def delete_node(file):
-    id = input('Введите ID заметки для удаления')
-    
-    
+def delete_note(file):
+    id = input('Введите ID заметки для удаления: ')
+    with open(file, "r") as f:
+        lines = f.readlines()
+    with open(file, "w") as f:
+        for line in lines:
+            if line[:len(id)] != id:
+                f.write(line)    
     
 def main():
     flag = True
